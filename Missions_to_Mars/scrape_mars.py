@@ -12,13 +12,14 @@ def scrape_all():
 
     #Run all scraping functions created
     main_data = {
-        "news_tile": news_title,
+        "news_title": news_title,
         "news_paragraph": news_p,
         "featured_image": featured_image(browser),
         "Mars_weather": Mars_weather(browser),
         "Mars_facts": Mars_facts(),
         "Mars_hemispheres": Mars_hemispheres(browser)
     }
+    return (main_data)
 
 
 
@@ -103,33 +104,33 @@ def Mars_hemispheres(browser):
     link_3 = astro_url+mars_links[6]
     link_4 = astro_url+mars_links[7]
     #parsing images
-    browser_hemi.visit(link_1)
+    browser.visit(link_1)
     response_1 = requests.get(link_1)
     soup_1 = bs(response_1.text, 'html.parser')
     title_1 = soup_1.h2.text
     link_image_1 = soup_1.li.a['href']
-    browser_hemi.back()
+    browser.back()
 
-    browser_hemi.visit(link_2)
+    browser.visit(link_2)
     response_2 = requests.get(link_2)
     soup_2 = bs(response_2.text, 'html.parser')
     title_2 = soup_2.h2.text
     link_image_2 = soup_2.li.a['href']
-    browser_hemi.back()
+    browser.back()
 
-    browser_hemi.visit(link_3)
+    browser.visit(link_3)
     response_3 = requests.get(link_3)
     soup_3 = bs(response_3.text, 'html.parser')
     title_3 = soup_3.h2.text
     link_image_3 = soup_3.li.a['href']
-    browser_hemi.back()
+    browser.back()
 
-    browser_hemi.visit(link_4)
+    browser.visit(link_4)
     response_4 = requests.get(link_4)
     soup_4 = bs(response_4.text, 'html.parser')
     title_4 = soup_4.h2.text
     link_image_4 = soup_4.li.a['href']
-    browser_hemi.quit()
+    browser.quit()
     #image link dictionary
     hemis_image_urls_dict = [{"title":title_1, "img_url": link_image_1},
                         {"title":title_2, "img_url": link_image_2},

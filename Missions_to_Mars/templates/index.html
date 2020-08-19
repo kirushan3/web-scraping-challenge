@@ -1,62 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Mars</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
 <body>
-    <div class = "container">
-        <div class = "jumbotron text-center">
-            <h2>Mission to Mars</h2>
-            <p><a class = "btn btn-primary btn-lg" href="/scrape" role="button">Scrape the Data</a></p>
-        </div>
 
-        <!-- Mars News -->
-        <div class="row" id="mars-news">
-            <div class ="col-md-12">
-                <div class = "media">
-                    <div class = "media-body">
-                        <h2>Latest Mars News</h2>
-                        <h4 class = "media-heading">{{mars.news_title}}</h4>
-                        <p>{{mars.news_paragraph}}</p>
+       <div class="container">
+                <div class="jumbotron">
+                    <h1 style="text-align: center;">Mission to Mars</h1>
 
-        <div class="row" id="mars-news">
-            <div class ="col-md-8"></div>
-                <h2>Featured Mars Image</h2>
-                <img src="{{mars.featured_image}}" class="img-responsive" alt="Responsive image">
-                    </div>
-                    </div>
-        <div class="row" id="mars-news">
-            <div class ="col-md-8"></div>
-                <h2>Mars Weather</h2>
-                <p>{{mars.Mars_weather}}</p>
+                    <p style="text-align: center;">
+                        <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+                    </p>
                 </div>
+                <div class="container">
+                    <h1>Latest Mars News</h1>
+                    <h5 class = "mars_data" id="mars_news"> {{mars.news_title}}</h5>
+                    <p>{{mars.news_paragraph}}</p>
+
+
                 </div>
-        <div class="row" id="mars-news">
-            <div class ="col-md-8"></div>
-                <h2>Mars Facts</h2>
-                        <p>{{mars.Mars_facts}}</p>
+
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h3>Featured Mars Image</h3>
+
+                            <img src="{{mars.featured_image}}" alt="featured image" style="width: 80%;">
+
                         </div>
-                        </div>
-        <div class="row" id="mars-news">
-            <div class ="col-md-8"></div>
-                <h2>Mars Hemisphere</h2>
-                <img src="{{mars.Mars_hemispheres}}" class="img-responsive" alt="Responsive image">
-                    </div>
-                    </div>
+                        <div class="col-md-5">
+                            <div class = "card" style = "width: 18rem">
+                                <div class = "card-body text-black">
+                                <h5 class = 'card-title'>Current Mars Weather</h5>
+                                <p class = "card-text">{{mars.Mars_weather}}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <h3>Mars Facts</h3>
+                            <div class="text-align">{{mars.Mars_facts | safe}}
+
+                            </div>
+                        </div>   
+                    </div> 
+                </div> 
             </div>
+            <br>
+            <br>
+                <div class="container-fluid">
+                    <div class = "row">    
+                        <div class = col-lg-12>          
+                            <H3 style="text-align: center;">Mars Hemispheres</H3>
+                            <hr>
+                        </div>
+                            {% for hemis in mars.Mars_hemispheres %}
+                            <div class = col-md-6>
+                                <div class = "card text-white bg-dark" style = "margin: 30px;">
+                                    <img src="{{hemis.img_url}}" alt="hemisphere" style="width:50%;">
+                                    <div class = "card-body">
+                                     <h3 class = "card-text">{{hemis.title}}</h3>
+                                    </div>
+                                </div>
+                            </div>    
+                            {% endfor %}
+                    </div>
+                </div>
 
-        </div>
-
-    </div>
 
 
 
 
-
+           
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
-
 </html>
